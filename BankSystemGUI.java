@@ -5,10 +5,24 @@ import java.awt.*;
 import java.awt.event.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class BankSystemGUI extends JFrame {
     private static String USERS_FILE = "users.txt";
     private static String MONEY_FILE = "money.txt";
+    private static void writeLogToFile(String log) {
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String currentTime = dateFormat.format(new Date());// 取得現在時間
+
+            FileWriter writer = new FileWriter("log.txt", true);
+            writer.write(currentTime + " - " + log + "\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private static DefaultListModel<String> logListModel = new DefaultListModel<>();
     private static JList<String> logList = new JList<>(logListModel);
     public static ArrayList<Client> clientList = new ArrayList<>(); // 存放客戶資料
@@ -68,8 +82,10 @@ public class BankSystemGUI extends JFrame {
                 User currentUser = authenticateUser(username, password);
                 if (currentUser != null) {
                     if (currentUser instanceof Admin) {
+                        writeLogToFile("Admin " + currentUser.getUsername() + " login");
                         showAdminMenu((Admin) currentUser);
                     } else if (currentUser instanceof Client) {
+                        writeLogToFile("Client " + currentUser.getUsername() + " login");
                         showClientMenu((Client) currentUser);
                     }
                     loginFrame.dispose();
@@ -225,6 +241,7 @@ public class BankSystemGUI extends JFrame {
         JButton logoutButton = new JButton("登出");
         logoutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                writeLogToFile("Admin " + admin.getUsername() + " logout");
                 adminFrame.dispose();
             }
         });
@@ -324,6 +341,7 @@ public class BankSystemGUI extends JFrame {
         JButton logoutButton = new JButton("登出");
         logoutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                writeLogToFile("Client " + client.getUsername() + " logout");
                 adminFrame.dispose();
             }
         });
