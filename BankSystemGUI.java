@@ -229,7 +229,7 @@ public class BankSystemGUI extends JFrame {
                         } else {
                             clientList.add(new Client(username, password, realname));
                             try (PrintWriter writer = new PrintWriter(new FileWriter(USERS_FILE, true))) {
-                                writer.println("C," + username + "," + password + "," + realname);
+                                writer.println("\nC," + username + "," + password + "," + realname);
                             } catch (IOException e1) {
                                 e1.printStackTrace();
                             }
@@ -481,8 +481,7 @@ public class BankSystemGUI extends JFrame {
         }
     }
 
-    private void displayAccountTransactionDetails(Client client) {
-        // Check if the client exists
+    private void displayAccountTransactionDetails(Client client) {// 檢視帳戶明細
         if (client != null) {
             String transactionDetails = client.getTransactionDetails();
             JOptionPane.showMessageDialog(null, transactionDetails);
