@@ -6,7 +6,11 @@ import java.awt.event.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.io.InputStreamReader;
+import java.io.InputStream;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 public class BankSystemGUI extends JFrame {
     private static String USERS_FILE = "users.txt";
@@ -248,9 +252,9 @@ public class BankSystemGUI extends JFrame {
                 addnewUserFrame.add(realnameField);
                 addnewUserFrame.add(addnewUserButton);
 
-                addnewUserFrame.pack();
-                addnewUserFrame.setLocationRelativeTo(null);
-                addnewUserFrame.setVisible(true);
+                addnewUserFrame.pack();// 設定addnewUserFrame的大小
+                addnewUserFrame.setLocationRelativeTo(null);// 設定addnewUserFrame的位置
+                addnewUserFrame.setVisible(true);// 顯示addnewUserFrame
             }
         });
 
@@ -356,6 +360,8 @@ public class BankSystemGUI extends JFrame {
             }
         });
 
+        
+
         JButton transferMoneyButton = new JButton("轉帳");
         transferMoneyButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -405,12 +411,39 @@ public class BankSystemGUI extends JFrame {
             }
         });
 
+
         JButton viewTransactionButton = new JButton("檢視帳戶明細");
         viewTransactionButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 displayAccountTransactionDetails(client);
             }
         });
+
+        JButton otherButton = new JButton("其他功能");
+        otherButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JFrame otherFrame = new JFrame("其他功能");
+                otherFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                otherFrame.setLayout(new GridLayout(4, 2));
+
+                JButton exchangemoneyButton = new JButton("匯率換算");
+                exchangemoneyButton.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e){
+                        JFrame exchangemoneyFrame = new JFrame("匯率換算");
+                        
+
+                        
+                    }
+                }); // Add closing parenthesis here
+
+                otherFrame.add(exchangemoneyButton);
+                otherFrame.pack();
+                otherFrame.setLocationRelativeTo(null);
+                otherFrame.setVisible(true);
+            }
+        });
+
+    
 
         adminFrame.add(viewTransactionButton);
 
@@ -422,11 +455,13 @@ public class BankSystemGUI extends JFrame {
             }
         });
 
+
         adminFrame.add(recordDepositButton);
         adminFrame.add(saveMoneyButton);
         adminFrame.add(getMoneyButton);
         adminFrame.add(transferMoneyButton);
         adminFrame.add(viewTransactionButton);
+        adminFrame.add(otherButton);
         adminFrame.add(logoutButton);
 
         adminFrame.pack();
