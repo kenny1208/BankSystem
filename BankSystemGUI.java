@@ -6,11 +6,9 @@ import java.awt.event.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.io.InputStreamReader;
-import java.io.InputStream;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
+
 
 public class BankSystemGUI extends JFrame {
     private static String USERS_FILE = "users.txt";
@@ -429,16 +427,33 @@ public class BankSystemGUI extends JFrame {
                 JButton exchangemoneyButton = new JButton("匯率換算");
                 exchangemoneyButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e){
-                        JFrame exchangemoneyFrame = new JFrame("匯率換算");
-                        
+                        JFrame exchangemoneyFrame = new JFrame("匯率換算");// 設定視窗標題
+                        exchangemoneyFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);// 設定關閉視窗時的動作
+                        exchangemoneyFrame.setLayout(new GridLayout(3, 1));// 設定版面為2*1的格狀
 
-                        
+                        JLabel exchangemoneyLabel = new JLabel("請輸入金額：");
+                        JTextField exchangemoneyTextField = new JTextField();
+                        JButton exchangemoneyButton1 = new JButton("確定");
+
+                        exchangemoneyButton1.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                int money = Integer.parseInt(exchangemoneyTextField.getText());
+                                //匯率轉換function
+                            }
+
+                        });
+                        exchangemoneyFrame.add(exchangemoneyLabel);
+                        exchangemoneyFrame.add(exchangemoneyTextField);
+                        exchangemoneyFrame.add(exchangemoneyButton1);
+                        exchangemoneyFrame.pack(); // 自適應視窗大小
+                        exchangemoneyFrame.setLocationRelativeTo(null); // 設定視窗位置
+                        exchangemoneyFrame.setVisible(true); // 顯示新建的 JFrame
+
                     }
-                }); // Add closing parenthesis here
-
+                }); 
                 otherFrame.add(exchangemoneyButton);
-                otherFrame.pack();
-                otherFrame.setLocationRelativeTo(null);
+                otherFrame.pack();// 設定otherFrame的大小
+                otherFrame.setLocationRelativeTo(null);// 設定otherFrame的位置
                 otherFrame.setVisible(true);
             }
         });
