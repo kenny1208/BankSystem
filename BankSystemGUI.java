@@ -356,6 +356,55 @@ public class BankSystemGUI extends JFrame {
             }
         });
 
+        JButton transferMoneyButton = new JButton("轉帳");
+        transferMoneyButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                JFrame transferFrame = new JFrame("轉帳");
+                transferFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                transferFrame.setLayout(new GridLayout(3, 1));
+
+                JLabel transferLabel = new JLabel("請輸入轉帳金額：");
+                JTextField transferTextField = new JTextField();
+                JButton transferButton = new JButton("確定");
+
+                transferButton.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        int money = Integer.parseInt(transferTextField.getText());
+                        if (client.getmoney() >= money) {
+                            String username = JOptionPane.showInputDialog("請輸入轉帳對象：");
+                            Client transferClient = findcClient(username);
+                            if (transferClient != null) {
+                                client.addmoney(-money);
+                                transferClient.addmoney(money);
+                                recordTransactionDetail(client.getUsername(), "transfer", money);// 紀錄交易細節
+                                recordTransactionDetail(transferClient.getUsername(), "transfered", money);// 紀錄交易細節
+                                savemoney();
+                                JOptionPane.showMessageDialog(null, "轉帳成功！", "提示",
+                                        JOptionPane.INFORMATION_MESSAGE);
+                                displayAccountBalance(client);
+                            } else {
+                                JOptionPane.showMessageDialog(null, "找不到該客戶！", "錯誤",
+                                        JOptionPane.ERROR_MESSAGE);
+                                displayAccountBalance(client);
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "餘額不足！", "提示", JOptionPane.WARNING_MESSAGE);
+                            displayAccountBalance(client);
+                        }
+                        transferFrame.dispose();
+                    }
+                });
+
+                transferFrame.add(transferLabel);
+                transferFrame.add(transferTextField);
+                transferFrame.add(transferButton);
+
+                transferFrame.pack();
+                transferFrame.setLocationRelativeTo(null);
+                transferFrame.setVisible(true);
+            }
+        });
+
         JButton viewTransactionButton = new JButton("檢視帳戶明細");
         viewTransactionButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -376,6 +425,7 @@ public class BankSystemGUI extends JFrame {
         adminFrame.add(recordDepositButton);
         adminFrame.add(saveMoneyButton);
         adminFrame.add(getMoneyButton);
+        adminFrame.add(transferMoneyButton);
         adminFrame.add(viewTransactionButton);
         adminFrame.add(logoutButton);
 

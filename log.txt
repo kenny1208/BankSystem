@@ -27,3 +27,11 @@
 2023-12-29 15:11:06 - Admin Sean1234 login
 2023-12-29 15:17:13 - Admin Sean1234 login
 2023-12-29 15:17:30 - Admin Sean1234 logout
+2023-12-29 15:26:13 - Client AAA111 login
+2023-12-29 15:26:32 - Client AAA111 logout
+2023-12-29 15:26:37 - Client BBB222 login
+2023-12-29 15:26:49 - Client BBB222 logout
+2023-12-29 15:29:35 - Client BBB222 login
+2023-12-29 15:29:49 - Client BBB222 logout
+2023-12-29 15:29:53 - Client AAA111 login
+2023-12-29 15:30:04 - Client AAA111 logout
