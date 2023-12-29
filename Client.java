@@ -20,7 +20,7 @@ public class Client extends User {
     }
 
     public String getTransactionDetails() {
-        String filePath = "transation_details.txt";
+        String filePath = "transaction_details.txt";
         StringBuilder details = new StringBuilder();
 
         try {

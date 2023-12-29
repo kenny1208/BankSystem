@@ -152,7 +152,7 @@ public class BankSystemGUI extends JFrame {
         adminFrame.setLayout(new GridLayout(2, 1));
 
         JButton recordprofileButton = new JButton("搜尋客戶資料");
-        recordprofileButton.addActionListener(new ActionListener() {
+        recordprofileButton.addActionListener(new ActionListener() {// 搜尋客戶資料
             public void actionPerformed(ActionEvent e) {
                 String username = JOptionPane.showInputDialog(adminFrame, "請輸入客戶使用者名稱：");
                 Client client = findcClient(username);
@@ -165,7 +165,7 @@ public class BankSystemGUI extends JFrame {
                     clientInfoTextArea.setEditable(false);// 設定文字區域不可編輯
                     // clientInfoTextArea.setText(client.toString());// 將客戶資料設定至文字區域
                     clientInfoTextArea.setText("name: " + client.getRealname() + "\nusername: " + client.getUsername()
-                            + "\nmoney: " + client.getmoney() + "\npassword: " + client.getPassword());
+                            + "\nmoney: " + client.getmoney() + "\npassword: " + client.getPassword()+"\ntransaction details:\n"+client.getTransactionDetails());
 
                     JButton recordDepositButton = new JButton("登記存款");
                     recordDepositButton.addActionListener(new ActionListener() {
@@ -229,7 +229,7 @@ public class BankSystemGUI extends JFrame {
                         } else {
                             clientList.add(new Client(username, password, realname));
                             try (PrintWriter writer = new PrintWriter(new FileWriter(USERS_FILE, true))) {
-                                writer.println("\nC," + username + "," + password + "," + realname);
+                                writer.println("C," + username + "," + password + "," + realname);
                             } catch (IOException e1) {
                                 e1.printStackTrace();
                             }
