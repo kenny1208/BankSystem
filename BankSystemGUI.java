@@ -11,18 +11,7 @@ import java.util.Date;
 public class BankSystemGUI extends JFrame {
     private static String USERS_FILE = "users.txt";
     private static String MONEY_FILE = "money.txt";
-    private static void writeLogToFile(String log) {
-        try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String currentTime = dateFormat.format(new Date());// 取得現在時間
 
-            FileWriter writer = new FileWriter("log.txt", true);
-            writer.write(currentTime + " - " + log + "\n");
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     private static DefaultListModel<String> logListModel = new DefaultListModel<>();
     private static JList<String> logList = new JList<>(logListModel);
     public static ArrayList<Client> clientList = new ArrayList<>(); // 存放客戶資料
@@ -62,6 +51,32 @@ public class BankSystemGUI extends JFrame {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+
+    private static void writeLogToFile(String log) {// 寫入log
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String currentTime = dateFormat.format(new Date());// 取得現在時間
+
+            FileWriter writer = new FileWriter("log.txt", true);
+            writer.write(currentTime + " - " + log + "\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void recordTransactionDetail(String username, String transactionType, double amount) {// 紀錄交易細節
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String currentTime = dateFormat.format(new Date());// 取得現在時間
+
+            FileWriter writer = new FileWriter("transaction_details.txt", true);
+            writer.write(currentTime + " - " + username + " - " + transactionType + " - " + amount + "\n");
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showLoginMenu() {
@@ -161,6 +176,7 @@ public class BankSystemGUI extends JFrame {
 
                             admin.recordmoney(client, money);
                             savemoney();
+                            recordTransactionDetail(client.getUsername(), "deposit", money);
                             JOptionPane.showMessageDialog(null, "登記成功！", "成功", JOptionPane.INFORMATION_MESSAGE);
                             clientInfoTextArea.setText("name: " + client.getRealname() + "\nusername: "
                                     + client.getUsername() + "\nmoney: " + client.getmoney() + "\npassword: "
@@ -285,6 +301,7 @@ public class BankSystemGUI extends JFrame {
                         int money = Integer.parseInt(depositTextField.getText());
                         client.addmoney(money);
                         savemoney();
+                        recordTransactionDetail(client.getUsername(), "deposit", money);// 紀錄交易細節
                         JOptionPane.showMessageDialog(null, "存款成功！", "提示", JOptionPane.INFORMATION_MESSAGE);
                         displayAccountBalance(client);
                         depositFrame.dispose();
@@ -317,6 +334,7 @@ public class BankSystemGUI extends JFrame {
                         int money = Integer.parseInt(withdrawTextField.getText());
                         if (client.getmoney() >= money) {
                             client.addmoney(-money);
+                            recordTransactionDetail(client.getUsername(), "withdraw", money);// 紀錄交易細節
                             savemoney();
                             JOptionPane.showMessageDialog(null, "提款成功！", "提示", JOptionPane.INFORMATION_MESSAGE);
                             displayAccountBalance(client);
@@ -338,6 +356,15 @@ public class BankSystemGUI extends JFrame {
             }
         });
 
+        JButton viewTransactionButton = new JButton("檢視帳戶明細");
+        viewTransactionButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                displayAccountTransactionDetails(client);
+            }
+        });
+
+        adminFrame.add(viewTransactionButton);
+
         JButton logoutButton = new JButton("登出");
         logoutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -349,6 +376,7 @@ public class BankSystemGUI extends JFrame {
         adminFrame.add(recordDepositButton);
         adminFrame.add(saveMoneyButton);
         adminFrame.add(getMoneyButton);
+        adminFrame.add(viewTransactionButton);
         adminFrame.add(logoutButton);
 
         adminFrame.pack();
@@ -450,6 +478,16 @@ public class BankSystemGUI extends JFrame {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void displayAccountTransactionDetails(Client client) {
+        // Check if the client exists
+        if (client != null) {
+            String transactionDetails = client.getTransactionDetails();
+            JOptionPane.showMessageDialog(null, transactionDetails);
+        } else {
+            JOptionPane.showMessageDialog(null, "Client not found.");
         }
     }
 
