@@ -55,3 +55,13 @@
 2023-12-29 20:03:32 - Client CCC333 login
 2023-12-29 20:12:33 - Client AAA111 login
 2023-12-29 20:14:34 - Client BBB222 login
+2024-01-04 09:28:40 - Admin Sean1234 login
+2024-01-04 09:29:21 - Admin Sean1234 logout
+2024-01-04 09:29:31 - Client AAA111 login
+2024-01-04 10:37:02 - Admin Sean1234 login
+2024-01-04 10:37:44 - Admin Sean1234 logout
+2024-01-04 10:37:52 - Client AAA111 login
+2024-01-04 10:39:57 - Client AAA111 logout
+2024-01-04 10:40:06 - Admin Sean1234 login
+2024-01-04 19:07:18 - Client AAA111 login
+2024-01-04 19:07:56 - Client AAA111 login

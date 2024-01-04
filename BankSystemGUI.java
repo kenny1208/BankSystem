@@ -451,7 +451,50 @@ public class BankSystemGUI extends JFrame {
 
                     }
                 }); 
+
+                JButton Fixeddeposit = new JButton("定存");
+                Fixeddeposit.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e){
+                        JFrame FixeddepositFrame = new JFrame("定存");// 設定視窗標題
+                        FixeddepositFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);// 設定關閉視窗時的動作
+                        FixeddepositFrame.setLayout(new GridLayout(3, 1));// 設定版面為2*1的格狀
+
+                        JLabel amountLabel = new JLabel("請輸入金額：");
+                        JTextField amountTextField = new JTextField();
+                        JLabel yearsLabel = new JLabel("請輸入年限：");
+                        JTextField yearsTextField = new JTextField();
+                        JButton confirmButton = new JButton("確定");
+
+                        confirmButton.addActionListener(new ActionListener() {
+                            public void actionPerformed(ActionEvent e) {
+                                int amount = Integer.parseInt(amountTextField.getText());
+                                int years = Integer.parseInt(yearsTextField.getText());
+                                float interestrate = 1.3f;
+                                int total = (int) (amount * Math.pow(interestrate, years));
+                                JOptionPane.showMessageDialog(null, "定存成功！\n本金：" + amount + "\n年限：" + years + "\n利率：" + interestrate + "\n本利和：" + total, "提示", JOptionPane.INFORMATION_MESSAGE);
+                                client.addmoney(total);
+                                savemoney();
+                                recordTransactionDetail(client.getUsername(), "Fixeddeposit", total);// 紀錄交易細節
+                                displayAccountBalance(client);
+                                FixeddepositFrame.dispose();
+
+                            }
+                        });
+
+                        FixeddepositFrame.add(amountLabel);
+                        FixeddepositFrame.add(amountTextField);
+                        FixeddepositFrame.add(yearsLabel);
+                        FixeddepositFrame.add(yearsTextField);
+                        FixeddepositFrame.add(confirmButton);
+                        FixeddepositFrame.pack(); // 自適應視窗大小
+                        FixeddepositFrame.setLocationRelativeTo(null); // 設定視窗位置
+                        FixeddepositFrame.setVisible(true); // 顯示新建的 JFrame
+                    }
+                });
+
+
                 otherFrame.add(exchangemoneyButton);
+                otherFrame.add(Fixeddeposit);
                 otherFrame.pack();// 設定otherFrame的大小
                 otherFrame.setLocationRelativeTo(null);// 設定otherFrame的位置
                 otherFrame.setVisible(true);
