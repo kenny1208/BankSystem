@@ -8,8 +8,6 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-//test
 
 
 public class BankSystemGUI extends JFrame {
