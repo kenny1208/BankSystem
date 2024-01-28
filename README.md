@@ -1,23 +1,29 @@
-# 銀行系統 (Bank System) 專案
+# Bank System Project
 
-這是一個用於模擬基本銀行業務的簡單銀行系統專案。專案旨在提供一個可擴展的基礎架構，以實現銀行業務的基本功能。
+This is a simple bank system project designed to simulate basic banking operations. The project aims to provide a scalable foundation to implement fundamental banking functionalities.
 
-## 功能特點
+## Key Features
 
-- **帳戶管理：** 支援新增帳戶、查詢帳戶餘額、轉帳等功能。
-- **交易記錄：** 保存每一筆交易的詳細信息，包括日期、金額、交易類型等。
-- **安全性：** 實現基本的安全機制，如密碼加密和帳戶權限管理。
-- **交易通知：** 通過郵件或簡訊等方式提供即時交易通知服務。
+- **Account Management:** Support for creating accounts, checking account balances, transferring funds, depositing, and withdrawing.
+- **Transaction Records:** Maintain detailed records for each transaction, including date, amount, transaction type, etc.
+- **User Roles:** Distinguish between administrator accounts and regular user accounts.
+- **Administrator Functionality:**
+  - **Customer Search:** Administrators can search for customer information.
+  - **Account Operations:**
+    - **Open Account:** Administrators can open accounts for new customers.
+    - **Deposit:** Administrators can register customer deposits.
+- **Security Measures:** Implement basic security mechanisms such as password encryption and account permission management.
+- **Transaction Notifications:** Provide real-time transaction notifications through email or SMS.
 
-## 技術堆疊
+## Tech Stack
 
-- **語言：** 使用 [程式語言] 作為主要開發語言。
-- **數據庫：** 數據存儲使用 [數據庫系統]。
-- **框架：** 借助 [框架] 快速搭建基本架構。
-- **單元測試：** 使用 [測試框架] 確保代碼品質。
+- **Language:** Utilize [Programming Language] as the primary development language.
+- **Database:** Store data using [Database System].
+- **Framework:** Build the basic structure quickly with [Framework].
+- **Unit Testing:** Ensure code quality through [Testing Framework].
 
-## 安裝和使用
+## Installation and Usage
 
-1. 克隆本存儲庫到本地機器。
+1. Clone this repository to your local machine.
    ```bash
    git clone https://github.com/yourusername/bank-system.git
