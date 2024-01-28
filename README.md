@@ -20,4 +20,5 @@ This is a simple bank system project designed to simulate basic banking operatio
 
 ## Future updates
 
+- **Exchange rate conversion:** Can display real-time exchange rates and exchange money.
 
