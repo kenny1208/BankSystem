@@ -15,8 +15,9 @@ This is a simple bank system project designed to simulate basic banking operatio
 
 ## Tech Stack
 
-- **Language:** Utilize [Programming Language] as the primary development language.
-- **Database:** Store data using [Database System].
-- **Framework:** Build the basic structure quickly with [Framework].
-- **Unit Testing:** Ensure code quality through [Testing Framework].
+- **Language:** Utilize [JAVA] as the primary development language.
+- **Framework:** Build the basic structure quickly with [AWT（Abstract Window Toolkit）].
+
+## Future updates
+
 
