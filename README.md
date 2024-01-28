@@ -12,8 +12,6 @@ This is a simple bank system project designed to simulate basic banking operatio
   - **Account Operations:**
     - **Open Account:** Administrators can open accounts for new customers.
     - **Deposit:** Administrators can register customer deposits.
-- **Security Measures:** Implement basic security mechanisms such as password encryption and account permission management.
-- **Transaction Notifications:** Provide real-time transaction notifications through email or SMS.
 
 ## Tech Stack
 
@@ -22,8 +20,3 @@ This is a simple bank system project designed to simulate basic banking operatio
 - **Framework:** Build the basic structure quickly with [Framework].
 - **Unit Testing:** Ensure code quality through [Testing Framework].
 
-## Installation and Usage
-
-1. Clone this repository to your local machine.
-   ```bash
-   git clone https://github.com/yourusername/bank-system.git
